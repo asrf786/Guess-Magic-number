@@ -2,7 +2,8 @@ body {
   font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;
-  background-image: linear-gradient(rgb(11, 185, 216), rgb(248, 249, 250));
+  background-color: #b3ad3d;
+  background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
 }
 .main-container {
   height: 100vh;
