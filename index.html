@@ -28,21 +28,41 @@
         </div>
 
         <div class="item">
-          <p id="guess-number">?</p>
+          <p id="guess-number"></p>
           <p id="msg">Guessing Magic Number...Plz</p>
         </div>
         <div class="item item2">
-          <p class="info">( Between 1 to 20 )</p>
-          <input
-            type="number"
-            class="form-control guess-input"
-            placeholder="Enter Number"
-          />
-          <button class="btn btn-dark check class-btn">Guess Number</button>
-          <button class="btn btn-danger new-game class-btn">Play Again</button>
+          <div class="all-numbers-div">
+            <button class="numberShown">01</button>
+            <button class="numberShown">02</button>
+            <button class="numberShown">03</button>
+            <button class="numberShown">04</button>
+            <button class="numberShown">05</button>
+            <button class="numberShown">06</button>
+            <button class="numberShown">07</button>
+            <button class="numberShown">08</button>
+            <button class="numberShown">09</button>
+            <button class="numberShown">10</button>
+            <button class="numberShown">11</button>
+            <button class="numberShown">12</button>
+            <button class="numberShown">13</button>
+            <button class="numberShown">14</button>
+            <button class="numberShown">15</button>
+            <button class="numberShown">16</button>
+            <button class="numberShown">17</button>
+            <button class="numberShown">18</button>
+            <button class="numberShown">19</button>
+            <button class="numberShown">20</button>
+          </div>
+          <button class="btn btn-danger new-game class-btn hidden">
+            Play Again
+          </button>
         </div>
         <div class="item">
-          <p class="info">Trials left : <span id="trials">20</span></p>
+          <div class="trials-div">
+            <p class="trial-info">Trials left :</p>
+            <p id="trials">20</p>
+          </div>
           <p>Highscore :<span id="high-score">0</span></p>
         </div>
       </div>

@@ -11,73 +11,108 @@ randomNumberFun();
 // let magicNumber = Math.floor(Math.random() * 20 + 1);
 let trials = 20;
 let highscore = 0;
-
+let guess;
 let messageDisplay = document.getElementById("msg");
-let inputValue = document.querySelector(".guess-input");
 let trialValue = document.querySelector("#trials");
 let highscoreValue = document.querySelector("#high-score");
 let numberDisplay = document.getElementById("guess-number");
-const checkBtn = document.querySelector(".check");
 const againBtn = document.querySelector(".new-game");
+const numberClicked = document.querySelectorAll(".numberShown");
 
-againBtn.classList.add("disabled");
+// When Clicked on number
+for (let i = 0; i < numberClicked.length; i++) {
+  numberClicked[i].addEventListener("click", function () {
+    if (!numberClicked[i].classList.contains("disabled")) {
+      numberClicked[i].classList.add("disabled");
+      guess = Number(this.innerHTML);
 
-checkBtn.addEventListener("click", function () {
-  const guess = Number(inputValue.value);
+      if (trials > 2) {
+        if (guess === magicNumber) {
+          messageDisplay.textContent = "Correct Number ! You WON !";
+          numberClicked[i].style.backgroundColor = "#60b347";
+          messageDisplay.style.backgroundColor = "#60b347";
+          numberDisplay.textContent = magicNumber;
+          trialValue.textContent = "";
+          document.querySelector(".trial-info").textContent = "Won";
 
-  if (trials > 1) {
-    //If no number Enter
-    if (!guess) {
-      messageDisplay.textContent = "No Value entered";
-    }
-    //If number is Same number
-    else if (guess === magicNumber) {
-      messageDisplay.textContent = "Correct Number ! You WON !";
-      messageDisplay.style.backgroundColor = "#60b347";
-      numberDisplay.textContent = magicNumber;
-      inputValue.style.backgroundColor = "#60b347";
-      trialValue.textContent = "Won";
+          if (trials > highscore) {
+            highscore = trials;
+            highscoreValue.textContent = trials;
+          }
+          for (let i = 0; i < numberClicked.length; i++) {
+            numberClicked[i].classList.add("disabled");
+            numberClicked[i].classList.add("hidden");
+          }
+          numberClicked[i].classList.remove("hidden");
 
-      if (trials > highscore) {
-        highscore = trials;
-        highscoreValue.textContent = trials;
+          numberClicked[i].classList.add("winner");
+          againBtn.classList.remove("hidden");
+
+          setTimeout(() => {
+            againBtn.style.backgroundColor = "green";
+          }, 500);
+
+          //IF number id greater than random number
+        } else if (guess !== magicNumber) {
+          messageDisplay.textContent = "";
+          numberDisplay.textContent =
+            guess > magicNumber
+              ? `${guess} > Magic Number`
+              : `${guess} < Magic Number`;
+
+          trials--;
+          trialValue.textContent = trials;
+          guess > magicNumber
+            ? (numberClicked[i].style.backgroundColor = "red")
+            : (numberClicked[i].style.backgroundColor = "orange");
+        }
+      } else {
+        console.log(trials);
+        for (let i = 0; i < numberClicked.length; i++) {
+          numberClicked[i].classList.add("disabled");
+          numberClicked[i].classList.add("hidden");
+        }
+        numberClicked[magicNumber - 1].classList.remove("hidden");
+
+        numberClicked[magicNumber - 1].classList.add("looser");
+        againBtn.classList.remove("hidden");
+
+        setTimeout(() => {
+          againBtn.style.backgroundColor = "green";
+        }, 500);
+
+        messageDisplay.textContent = "You LOST the Game";
+        messageDisplay.style.backgroundColor = "red";
+        numberDisplay.textContent = magicNumber;
+        trialValue.textContent = "0";
+        againBtn.classList.remove("hidden");
       }
-      checkBtn.classList.add("disabled");
-      againBtn.classList.remove("disabled");
-
-      //IF number id greater than random number
-    } else if (guess !== magicNumber) {
-      messageDisplay.textContent =
-        guess > magicNumber
-          ? "Your Number is Too high !"
-          : "Your Number is Too Low !";
-      trials--;
-      trialValue.textContent = trials;
     }
-  } else {
-    messageDisplay.textContent = "You LOST the Game";
-    inputValue.style.backgroundColor = "red";
-    messageDisplay.style.backgroundColor = "red";
-
-    numberDisplay.textContent = magicNumber;
-    trialValue.textContent = "0";
-    checkBtn.classList.add("disabled");
-    againBtn.classList.remove("disabled");
-  }
-});
+  });
+}
 
 //Play again button Event
 
 againBtn.addEventListener("click", function () {
   numberDisplay.textContent = "?";
-  againBtn.classList.add("disabled");
-  checkBtn.classList.remove("disabled");
+  againBtn.classList.add("hidden");
   // magicNumber = Math.floor(Math.random() * 20 + 1);
   randomNumberFun();
-  inputValue.style.backgroundColor = "#ffff";
   messageDisplay.style.backgroundColor = "";
   messageDisplay.textContent = "Guessing for New Number !";
-  inputValue.value = "";
   trials = 20;
   trialValue.textContent = trials;
+  document.querySelector(".trial-info").textContent = "Trial Left :";
+  for (let i = 0; i < numberClicked.length; i++) {
+    numberClicked[i].style.backgroundColor = "white";
+    numberClicked[i].classList.remove("disabled");
+    numberClicked[i].classList.remove("hidden");
+    if (numberClicked[i].classList.contains("winner")) {
+      numberClicked[i].classList.remove("winner");
+    } else if (numberClicked[i].classList.contains("looser")) {
+      numberClicked[i].classList.remove("looser");
+    }
+  }
+
+  // againBtn.style.backgroundColor = "";
 });

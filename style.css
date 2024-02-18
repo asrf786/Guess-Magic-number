@@ -3,7 +3,9 @@ body {
   font-weight: 400;
   font-style: normal;
   background-color: #b3ad3d;
-  background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+  /* background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png"); */
+  background-image: url("https://thumbs.dreamstime.com/b/magic-background-mystical-stars-66650381.jpg");
+  background-size: 100%;
 }
 .main-container {
   height: 100vh;
@@ -13,7 +15,7 @@ body {
   grid-template-rows: 0.5fr 1.2fr 1fr;
 }
 .item {
-  border: 2px solid rgb(15, 77, 119);
+  /* border: 2px solid rgb(15, 77, 119); */
   box-shadow: 50px;
   border-radius: 10px;
   font-size: 2.5rem;
@@ -30,8 +32,8 @@ body {
   grid-row: span 2;
   justify-content: space-evenly;
 }
-.guess-number {
-  font-size: 5rem;
+#guess-number {
+  font-size: 4rem;
 }
 .guess-input {
   width: 50%;
@@ -48,4 +50,33 @@ body {
 }
 .heading {
   font-size: 4rem;
+}
+.all-numbers-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+.all-numbers-div button {
+  border-radius: 50%;
+  padding: 5px;
+}
+.all-numbers-div button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  color: green;
+  border-color: red;
+}
+.hidden {
+  display: none;
+}
+.winner {
+  font-size: 300%;
+}
+.looser {
+  font-size: 300%;
+  background-color: red;
+}
+.trials-div {
+  display: flex;
 }
