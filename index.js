@@ -8,7 +8,6 @@ const randomNumberFun = function () {
 
 randomNumberFun();
 
-// let magicNumber = Math.floor(Math.random() * 20 + 1);
 let trials = 20;
 let highscore = 0;
 let guess;
@@ -29,11 +28,11 @@ for (let i = 0; i < numberClicked.length; i++) {
       if (trials > 2) {
         if (guess === magicNumber) {
           messageDisplay.textContent = "Correct Number ! You WON !";
-          numberClicked[i].style.backgroundColor = "#60b347";
           messageDisplay.style.backgroundColor = "#60b347";
-          numberDisplay.textContent = magicNumber;
-          trialValue.textContent = "";
-          document.querySelector(".trial-info").textContent = "Won";
+          numberClicked[i].style.backgroundColor = "#60b347";
+          numberDisplay.textContent = "";
+          trialValue.textContent = 20 - trials;
+          document.querySelector(".trial-info").textContent = "Trial Used : ";
 
           if (trials > highscore) {
             highscore = trials;
@@ -96,7 +95,6 @@ for (let i = 0; i < numberClicked.length; i++) {
 againBtn.addEventListener("click", function () {
   numberDisplay.textContent = "?";
   againBtn.classList.add("hidden");
-  // magicNumber = Math.floor(Math.random() * 20 + 1);
   randomNumberFun();
   messageDisplay.style.backgroundColor = "";
   messageDisplay.textContent = "Guessing for New Number !";
@@ -113,6 +111,4 @@ againBtn.addEventListener("click", function () {
       numberClicked[i].classList.remove("looser");
     }
   }
-
-  // againBtn.style.backgroundColor = "";
 });
